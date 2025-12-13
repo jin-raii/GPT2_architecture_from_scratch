@@ -41,7 +41,7 @@ def collate_fn(batch, pad_token=50256,ignore_index=-100, allowed_mask_length=Non
     batch_max_length = max(len(item) + 1 for item in batch)
 
     #pad and prepare input 
-    inputs_list, targets_lst = []
+    inputs_list, targets_lst = [], []
 
     for item in batch: 
         new_item = item.copy()
@@ -70,4 +70,5 @@ def collate_fn(batch, pad_token=50256,ignore_index=-100, allowed_mask_length=Non
         targets_lst.append(targets)
 
     inputs_tensor = torch.stack(inputs_list).to(device)
-    return inputs_tensor, targets
+    targets_tensor = torch.stack(targets_lst).to(device)
+    return inputs_tensor, targets_tensor
