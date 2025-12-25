@@ -11,3 +11,5 @@ class GPT2Config():
     context_length: int = 1024
     drop_rate: int      = 0.1 
     qkv_bias: bool      = False 
+
+    
