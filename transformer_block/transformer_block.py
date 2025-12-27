@@ -7,15 +7,15 @@ sys.path.insert(0, str(parent_dir))
 
 from attention.multihead_attn import MultiHeadAttention
 from layer_norm.layer_norm import LayerNorm
-from feedForward.feed_forward import FeedForward
+from mlp.feed_forward import FeedForward
 
-num_trf = 1
+
 
 class TransformerBlock(nn.Module):
     def __init__(self, cfg):
         super().__init__()
         self.attn = MultiHeadAttention(
-            d_in=cfg.vocab_size, 
+            d_in=cfg.emb_dim, 
             d_out=cfg.emb_dim, 
             context_length=cfg.context_length, 
             dropout=cfg.drop_rate, 

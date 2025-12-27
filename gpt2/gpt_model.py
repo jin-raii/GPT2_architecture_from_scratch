@@ -7,10 +7,10 @@ parent_folder = Path(__file__).resolve().parent
 sys.path.insert(0, str(parent_folder))
 print('parent_folder ', parent_folder)
 
-# from transformer_block.transformer_block import TransformerBlock 
-from layer_norm.layer_norm import LayerNorm
 
 from transformer_block.transformer_block import TransformerBlock
+from layer_norm.layer_norm import LayerNorm
+
 
 
 class GPT2(nn.Module):
@@ -21,12 +21,12 @@ class GPT2(nn.Module):
         self.pos_emb = nn.Embedding(num_embeddings=cfg.context_length, embedding_dim=cfg.emb_dim)
         self.drop_emb = nn.Dropout(cfg.drop_rate)
 
-        # placehoder for Transformer block 
+        # Transformer block only works in emb_dim space
         self.trf_blocks = nn.Sequential(
             *[TransformerBlock(cfg) for _ in range(cfg.n_layers)]
         )
 
-        # placeholder for LayerNorm 
+        # LayerNorm 
         self.final_norm = LayerNorm(cfg.emb_dim)
 
         self.out_head = nn.Linear(cfg.emb_dim, cfg.vocab_size, bias=False)
