@@ -5,9 +5,12 @@ from pathlib import Path
 
 parent_folder = Path(__file__).resolve().parent
 sys.path.insert(0, str(parent_folder))
+print('parent_folder ', parent_folder)
 
-from transformer_block.transformer_block import TransformerBlock 
+# from transformer_block.transformer_block import TransformerBlock 
 from layer_norm.layer_norm import LayerNorm
+
+from transformer_block.transformer_block import TransformerBlock
 
 
 class GPT2(nn.Module):
@@ -20,7 +23,7 @@ class GPT2(nn.Module):
 
         # placehoder for Transformer block 
         self.trf_blocks = nn.Sequential(
-            *[TransformerBlock(cfg for _ in range(cfg.num_layers))]
+            *[TransformerBlock(cfg) for _ in range(cfg.n_layers)]
         )
 
         # placeholder for LayerNorm 

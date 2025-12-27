@@ -13,12 +13,13 @@ from feedForward.feed_forward import FeedForward
 class TransformerBlock(nn.Module):
     def __init__(self, cfg):
         super().__init__()
+        print(f'vocab size : {cfg}')
         self.attn = MultiHeadAttention(
             d_in=cfg.vocab_size, 
             d_out=cfg.emb_dim, 
             context_length=cfg.context_length, 
             dropout=cfg.drop_rate, 
-            num_heads=cfg.num_heads, 
+            num_heads=cfg.n_heads, 
             qkv_bias=cfg.qkv_bias
         )
 
