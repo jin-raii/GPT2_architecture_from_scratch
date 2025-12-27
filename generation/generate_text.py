@@ -10,8 +10,8 @@ def generate_text(model, idx, max_new_tokens, context_size):
         idx_cond = idx[:, -context_size:]
 
         # get the predictions 
-        with torch.no_grad():
-            logits = model(idx_cond)
+        with torch.no_grad(): # no gradients ( inference mode )
+            logits = model(idx_cond) 
 
         
         # focus only on the last token 
@@ -24,4 +24,4 @@ def generate_text(model, idx, max_new_tokens, context_size):
         # append sampled index to the running sequence 
         idx = torch.cat((idx, idx_next), dim=1) # (b, n_tokens+1)
 
-        return idx 
+    return idx 
