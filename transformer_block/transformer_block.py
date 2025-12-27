@@ -9,11 +9,11 @@ from attention.multihead_attn import MultiHeadAttention
 from layer_norm.layer_norm import LayerNorm
 from feedForward.feed_forward import FeedForward
 
+num_trf = 1
 
 class TransformerBlock(nn.Module):
     def __init__(self, cfg):
         super().__init__()
-        print(f'vocab size : {cfg}')
         self.attn = MultiHeadAttention(
             d_in=cfg.vocab_size, 
             d_out=cfg.emb_dim, 
@@ -22,6 +22,7 @@ class TransformerBlock(nn.Module):
             num_heads=cfg.n_heads, 
             qkv_bias=cfg.qkv_bias
         )
+        
 
         self.ff = FeedForward(cfg)
         self.norm1 = LayerNorm(cfg.emb_dim)
