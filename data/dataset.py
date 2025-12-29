@@ -4,7 +4,7 @@ import torch
 
 
 class InstructDataset(Dataset):
-    def __init__(self, data, tokenizer):
+    def __init__(self, data, tokenizer, block_size):
         super().__init__()
 
         self.data = data 
@@ -15,7 +15,9 @@ class InstructDataset(Dataset):
             instruction_plus_input = self.format_data(entry)
             response_text = f"\n\n Response:\n{entry['output']}"
             full_text = instruction_plus_input + response_text
-            self.encoded_texts.append(tokenizer.encode(full_text))
+            tokens = tokenizer.encode(full_text)
+            for i in range(0, len(tokens)- block_size, block_size):
+                self.encoded_texts.append(tokens[i:i+block_size+1])
 
     def format_data(self, data):
         # Alpeca style 
