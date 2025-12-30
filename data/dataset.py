@@ -4,32 +4,23 @@ import torch
 
 
 class InstructDataset(Dataset):
-    def __init__(self, data, tokenizer, block_size):
-        super().__init__()
+    def __init__(self, data, tokenizer):
+        
 
         self.data = data 
-
+        self.tokenizer = tokenizer
         self.encoded_texts = []
         for entry in data: 
             # print(entry)
             instruction_plus_input = self.format_data(entry)
             response_text = f"\n\n Response:\n{entry['output']}"
             full_text = instruction_plus_input + response_text
-            tokens = tokenizer.encode(full_text)
-            for i in range(0, len(tokens)- block_size, block_size):
-                self.encoded_texts.append(tokens[i:i+block_size+1])
+            # tokens = tokenizer.encode(full_text)
+            self.encoded_texts.append(
+                tokenizer.encode(full_text)
+            )
 
-    def format_data(self, data):
-        # Alpeca style 
-        instruction_text = (
-            f"Below is an instruction that describes a task. "
-            f"Write a response that appropriately complets the request."
-            f"\n\n### Instruction:\n{data['instruction']}"
-        )
-
-        input_text = f"\n\n### Input:\n{data['input']}" if data['input'] else '' 
-        combined_text = instruction_text + input_text
-        return combined_text
+    
     
     def __len__(self): 
         return len(self.data)
