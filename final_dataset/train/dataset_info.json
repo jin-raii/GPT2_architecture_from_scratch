@@ -1,0 +1,42 @@
+{
+  "builder_name": "json",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "python-codes-25k",
+  "dataset_size": 47543602,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/flytech/python-codes-25k@0ed98ff2a76c5d133d8c157b814189a5a17ebd20/python-codes-25k.json": {
+      "num_bytes": 26356325,
+      "checksum": null
+    },
+    "hf://datasets/flytech/python-codes-25k@0ed98ff2a76c5d133d8c157b814189a5a17ebd20/python-codes-25k.jsonl": {
+      "num_bytes": 25445912,
+      "checksum": null
+    }
+  },
+  "download_size": 51802237,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 99345839,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 47543602,
+      "num_examples": 49626,
+      "dataset_name": "python-codes-25k"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

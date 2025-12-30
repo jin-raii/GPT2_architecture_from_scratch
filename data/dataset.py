@@ -10,14 +10,14 @@ class InstructDataset(Dataset):
         self.data = data 
         self.tokenizer = tokenizer
         self.encoded_texts = []
-        for entry in data: 
+        for entry in data['text']: 
             # print(entry)
-            instruction_plus_input = self.format_data(entry)
-            response_text = f"\n\n Response:\n{entry['output']}"
-            full_text = instruction_plus_input + response_text
+            # instruction_plus_input = self.format_data(entry)
+            # response_text = f"\n\n Response:\n{entry['output']}"
+            # full_text = instruction_plus_input + response_text
             # tokens = tokenizer.encode(full_text)
             self.encoded_texts.append(
-                tokenizer.encode(full_text)
+                tokenizer.encode(entry, allowed_special={'<|endoftext|>'})
             )
 
     
