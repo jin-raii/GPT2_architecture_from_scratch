@@ -2,7 +2,7 @@ import torch
 
 def calc_loss_batch(input_batch, target_batch, model, device):
     logit = model(input_batch.to(device)).to(device)
-    return torch.nn.functional.cross_entropy(logit.flaltten(0,1), target_batch.flatten().to(device))
+    return torch.nn.functional.cross_entropy(logit.flatten(0,1), target_batch.flatten().to(device))
 
 def calc_loss_loader(data_loader, model, device, num_batches=None):
     total_loss = 0.
