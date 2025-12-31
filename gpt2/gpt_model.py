@@ -31,7 +31,9 @@ class GPT2(nn.Module):
 
         self.out_head = nn.Linear(cfg.emb_dim, cfg.vocab_size, bias=False)
 
-    
+        # this makes out_head and tok_emb share the same underlying memory 
+        self.out_head.weight = self.tok_emb.weight
+
     def forward(self, in_idx): 
         batch_size, seq_len = in_idx.shape 
 
