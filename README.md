@@ -52,7 +52,7 @@ The trainer exposes these helper functions you can call from a script or noteboo
 - `train_model(model, train_loader, val_loader, optimizer, device, num_epochs, eval_freq, eval_iter, start_context, tokenizer)`
 - `evaluate_model(model, train_loader, val_loader, device, eval_iter)`
 
-Example (pseudo):
+Example:
 
 ```python
 from gpt2_config.config import GPT2Config
